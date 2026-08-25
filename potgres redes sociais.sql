@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comentarios;
 DROP TABLE IF EXISTS postagens;
 DROP TABLE IF EXISTS usuarios;
 
@@ -72,7 +73,6 @@ VALUES
 
 SELECT * FROM usuarios;
 
-/* criar tabela de postagens */
 CREATE TABLE postagens (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
@@ -81,15 +81,32 @@ CREATE TABLE postagens (
     data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-/* cadastrar postagem */
 INSERT INTO postagens
 (titulo, texto, usuario_id)
 VALUES
 (
-    'Eae tropinhas',
-    'K K K K K, conta outa tex',
+    'Meu primeiro post',
+    'Essa é minha primeira postagem.',
     1
 );
 
-/* listar postagens */
 SELECT * FROM postagens;
+
+CREATE TABLE comentarios (
+    id SERIAL PRIMARY KEY,
+    texto TEXT NOT NULL,
+    usuario_id INTEGER,
+    postagem_id INTEGER,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO comentarios
+(texto, usuario_id, postagem_id)
+VALUES
+(
+    'Gostei muito da postagem!',
+    2,
+    1
+);
+
+SELECT * FROM comentarios;
